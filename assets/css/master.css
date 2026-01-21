@@ -1,0 +1,147 @@
+/* @override http://local.lomaxdiy.com/assets/css/master.css */
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0b2 | 201101
+   NOTE: THIS IS A BETA VERSION (see previous line)
+   USE WITH CAUTION AND TEST WITH ABANDON */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html{
+	background-image:url(/assets/images/bg.jpg);
+}
+
+body {
+	padding: 0 60px;
+	width: 648px;
+	-webkit-tap-highlight-color: rgb(255,255,0);
+	margin:0 auto;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+
+}
+
+header{
+	border-top:10px solid #010141;
+	border-bottom:1px solid #EEE;
+	overflow:auto;
+	padding:20px 30px;
+	background-color:rgba(255,255,255,.8);
+}
+
+.nottmlisting {
+	float:right;
+	margin-top:17px;
+}
+
+section.banner{
+	background-color:#AAA;
+	color:#FFF;
+	padding:8px 20px;
+	font-size:12px;
+	text-align:right;
+}
+
+h1{
+	float:left;
+	text-transform:uppercase;
+	color:#010141;
+	width: 200px;
+	font: bold 18px/32px "Cabin", Lucida, Verdana, sans-serif;
+}
+
+h1 span.middle{
+	font-size: 60px;
+	clear:both;
+	display:block;
+	letter-spacing:-1px;
+	margin-top:2px;
+}
+h1 span.last{
+	margin-top:-3px;
+	width: 140px;
+	text-align: right;
+	float: right;
+}
+
+h2{
+	margin:20px;
+	float:right;
+	font-style:italic;
+	width:300px;
+	text-align:right;
+	font-size:12px;
+}
+
+h3{
+	font-family: "Cabin", Lucida, Verdana, sans-serif;
+	margin-top:20px;
+	margin-bottom:10px;
+	font-size:20px;
+	color:#010141;
+}
+
+a{
+	margin-top:3px;
+	color:#010141;
+	font-size:12px;
+}
+
+section.content{
+	padding:30px;
+	background-color:rgba(255,255,255,.6);
+}
+
+p, address{
+	line-height:22px;
+}
+
+img.map{
+	-webkit-transform: rotate(1deg);
+	float:right;
+	padding:5px;
+	background-color:#FFF;
+	margin:20px 20px 0 0;
+	height:200px;
+}
