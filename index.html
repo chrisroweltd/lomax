@@ -5,228 +5,986 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Charles Lomax & Son Ltd - Builders Merchants Nottingham | Trade Prices</title>
     <meta name="description" content="Nottingham's trusted builders merchant since 1890. Trade prices for all, fast local delivery. Timber, aggregates, plaster, Calor gas & more.">
-    <meta name="keywords" content="builders merchant nottingham, trade prices, calor gas, timber, aggregates, building supplies, DIY">
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        brand: { 500: '#d97706', 600: '#b45309', 700: '#92400e' },
-                        slate: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' }
-                    }
-                }
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --color-dark: #0d0d0d;
+            --color-dark-gray: #1a1a1a;
+            --color-medium-gray: #2a2a2a;
+            --color-light-gray: #f5f5f5;
+            --color-white: #ffffff;
+            --color-accent: #d97706;
+            --color-accent-dark: #b45309;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --color-text-muted: #999999;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            color: var(--color-text);
+            background: var(--color-white);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: var(--color-dark);
+            padding: 20px 0;
+        }
+        
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .nav-logo h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: -0.02em;
+        }
+        
+        .nav-logo h1 span {
+            color: var(--color-accent);
+        }
+        
+        .nav-logo p {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+        
+        .nav-contact {
+            text-align: right;
+        }
+        
+        .nav-phone {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            text-decoration: none;
+        }
+        
+        .nav-hours {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-dark-gray) 0%, var(--color-dark) 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content .subtext {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--color-white);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+        
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--color-white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-arrow {
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid currentColor;
+            border-top: 2px solid currentColor;
+            transform: rotate(45deg);
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .hero-stat {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 24px 32px;
+            border-radius: 8px;
+        }
+        
+        .hero-stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--color-dark);
+            border-top: 1px solid var(--color-medium-gray);
+            padding: 24px 0;
+        }
+        
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-white);
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        
+        .trust-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* Innovation Section (Why Choose Us) */
+        .innovation {
+            padding: 100px 0;
+            background: var(--color-white);
+        }
+        
+        .innovation-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: end;
+        }
+        
+        .innovation-header .subtext {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .innovation-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .innovation-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .innovation-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .innovation-cards {
+            border-left: 1px solid #e5e5e5;
+        }
+        
+        .innovation-card {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 24px;
+            padding: 28px 32px;
+            border-bottom: 1px solid #e5e5e5;
+            text-decoration: none;
+            color: inherit;
+            align-items: center;
+        }
+        
+        .innovation-card:last-child {
+            border-bottom: none;
+        }
+        
+        .innovation-card.active {
+            background: var(--color-light-gray);
+        }
+        
+        .innovation-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+        
+        .innovation-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-light);
+        }
+        
+        .innovation-card-arrow {
+            width: 14px;
+            height: 14px;
+            border-right: 2px solid var(--color-accent);
+            border-top: 2px solid var(--color-accent);
+            transform: rotate(45deg);
+        }
+        
+        /* Energy Partner Section */
+        .energy-partner {
+            padding: 100px 0;
+            background: var(--color-light-gray);
+        }
+        
+        .energy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .energy-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .energy-content h2 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        
+        .energy-text-wrapper {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .energy-border {
+            width: 2px;
+            background: var(--color-accent);
+            flex-shrink: 0;
+        }
+        
+        .energy-content p {
+            font-size: 1.0625rem;
+            color: var(--color-text-light);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: var(--color-white);
+        }
+        
+        .products-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .products-header .subtext {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        
+        .products-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 16px;
+        }
+        
+        .products-header p {
+            font-size: 1.0625rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        .product-card {
+            background: var(--color-white);
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .product-card-content {
+            padding: 24px;
+        }
+        
+        .product-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 8px;
+        }
+        
+        .product-card p {
+            font-size: 0.9375rem;
+            color: var(--color-text-light);
+        }
+        
+        .product-card.featured {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        
+        .product-card.featured h4,
+        .product-card.featured p {
+            color: var(--color-white);
+        }
+        
+        .product-card.featured p {
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        
+        .cta-inner {
+            text-align: center;
+        }
+        
+        .cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 24px;
+        }
+        
+        .cta h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 16px;
+        }
+        
+        .cta p {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        
+        .cta .btn {
+            background: var(--color-white);
+            color: #1e40af;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--color-light-gray);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 32px;
+        }
+        
+        .contact-card {
+            background: var(--color-white);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .contact-card address {
+            font-style: normal;
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .contact-card strong {
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+        
+        .contact-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-map {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-dark);
+            padding: 80px 0 40px;
+        }
+        
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--color-medium-gray);
+            margin-bottom: 40px;
+        }
+        
+        .footer-heading {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-white);
+            max-width: 500px;
+            line-height: 1.3;
+        }
+        
+        .footer-cta-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .footer-cta-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--color-white);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .footer-brand p {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 16px;
+        }
+        
+        .footer-logo span {
+            color: var(--color-accent);
+        }
+        
+        .footer-col h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: 20px;
+        }
+        
+        .footer-col a {
+            display: block;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            margin-bottom: 12px;
+        }
+        
+        .footer-col p {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--color-medium-gray);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+        }
+        
+        /* Placeholder Image Styling */
+        .placeholder-img {
+            background: linear-gradient(135deg, #e5e5e5 0%, #d0d0d0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .innovation-grid,
+            .energy-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .innovation-header {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            
+            .innovation-card {
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
         }
-    </script>
-    <style>
-        .hero-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
-        .accent-border { border-left: 4px solid #d97706; }
+        
+        @media (max-width: 640px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-stat {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 24px;
+            }
+            
+            .trust-items {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                gap: 32px;
+            }
+            
+            .innovation-images {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
-<body class="font-sans text-slate-800 bg-white">
-    <!-- Header -->
-    <header class="bg-slate-900 text-white">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between">
-            <div class="text-center sm:text-left mb-3 sm:mb-0">
-                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">
-                    <span class="text-brand-500">Charles Lomax</span> & Son Ltd
-                </h1>
-                <p class="text-slate-400 text-sm">Est. 1890 — Nottingham's Trusted Builders Merchant</p>
-            </div>
-            <div class="text-center sm:text-right">
-                <a href="tel:01159292350" class="text-xl sm:text-2xl font-bold text-white hover:text-brand-500 transition">
-                    0115 929 2350
-                </a>
-                <p class="text-slate-400 text-sm">Open Mon-Sat</p>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="nav-logo">
+                    <h1><span>Charles Lomax</span> & Son Ltd</h1>
+                    <p>Est. 1890 — Nottingham's Trusted Builders Merchant</p>
+                </div>
+                <div class="nav-contact">
+                    <a href="tel:01159292350" class="nav-phone">0115 929 2350</a>
+                    <p class="nav-hours">Open Mon–Sat</p>
+                </div>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg text-white py-16 sm:py-24">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight">
-                Quality Building Materials<br>
-                <span class="text-brand-500">At Trade Prices For Everyone</span>
-            </h2>
-            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                From major construction projects to weekend DIY, we supply trade and retail customers with everything they need. Fast, reliable local delivery across Nottingham.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:01159292350" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition shadow-lg">
-                    Call Us Now
-                </a>
-                <a href="https://maps.google.com/?q=Whitemoor+Lodge+2+Nuthall+Road+Bobbers+Mill+Nottingham+NG8+5AF" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg text-lg transition border border-white/20">
-                    Get Directions
-                </a>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="subtext">Quality & Reliability</span>
+                    <h2>Building Nottingham's Future Since 1890</h2>
+                    <p>Quality building materials at trade prices for everyone. From major construction projects to weekend DIY—we deliver what you need, when you need it.</p>
+                    <div class="hero-buttons">
+                        <a href="tel:01159292350" class="btn btn-primary">
+                            Call Us Now
+                            <span class="btn-arrow"></span>
+                        </a>
+                        <a href="https://maps.google.com/?q=Whitemoor+Lodge+2+Nuthall+Road+Bobbers+Mill+Nottingham+NG8+5AF" target="_blank" class="btn btn-secondary">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Construction site with building materials">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">130+</div>
+                        <div class="hero-stat-label">Years Serving Nottingham</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Trust Bar -->
-    <section class="bg-brand-500 text-white py-4">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-wrap justify-center gap-6 sm:gap-12 text-center font-medium">
-                <span>✓ Over 130 Years Experience</span>
-                <span>✓ Trade Prices For All</span>
-                <span>✓ Fast Local Delivery</span>
-                <span>✓ Expert Advice</span>
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Over 130 Years Experience
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Trade Prices For All
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Fast Local Delivery
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Expert Advice
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us (Innovation-style) -->
+    <section class="innovation">
+        <div class="container">
+            <div class="innovation-header">
+                <span class="subtext">Why Choose Lomax</span>
+                <h2>Trusted by professionals and homeowners across Nottingham</h2>
+            </div>
+            <div class="innovation-grid">
+                <div class="innovation-images">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Timber supplies">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80" alt="Building materials">
+                    <img src="https://images.unsplash.com/photo-1590479773265-7464e5d48118?w=400&q=80" alt="Hardware tools">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" alt="Construction">
+                </div>
+                <div class="innovation-cards">
+                    <div class="innovation-card active">
+                        <h4>Trade Prices For Everyone</h4>
+                        <p>Whether you're a contractor buying in bulk or a homeowner with a weekend project, you get the same great trade prices.</p>
+                        <span class="innovation-card-arrow"></span>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>Expert Knowledge</h4>
+                        <p>Our team can advise on materials, quantities and best practices. We've been doing this since 1890.</p>
+                        <span class="innovation-card-arrow"></span>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>Fast Local Delivery</h4>
+                        <p>Quick, reliable delivery across Nottingham and surrounding areas. Get materials when you need them.</p>
+                        <span class="innovation-card-arrow"></span>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>Trusted by Professionals</h4>
+                        <p>Schools, local authorities and building companies rely on us for consistent quality and service.</p>
+                        <span class="innovation-card-arrow"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Energy Partner Style Section -->
+    <section class="energy-partner">
+        <div class="container">
+            <div class="energy-grid">
+                <div class="energy-image">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80" alt="Builder's yard with materials">
+                </div>
+                <div class="energy-content">
+                    <h2>Your building partner for stronger projects</h2>
+                    <div class="energy-text-wrapper">
+                        <div class="energy-border"></div>
+                        <div>
+                            <p>We've served Nottingham's building trade for over four generations. From sole traders to major contractors, we understand what you need—quality materials, fair prices, and reliable service.</p>
+                            <p>Our Nuthall Road yard is fully stocked with timber, aggregates, cement, plaster, hardware, and everything in between. Pop in for expert advice or call ahead for delivery.</p>
+                            <a href="tel:01159292350" class="btn btn-primary">
+                                Speak With Our Team
+                                <span class="btn-arrow"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="py-16 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-4">What We Supply</h3>
-            <p class="text-slate-600 text-center max-w-2xl mx-auto mb-12">
-                A comprehensive range of building materials and supplies for trade professionals and DIY enthusiasts alike.
-            </p>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🪵</div>
-                    <h4 class="font-bold text-lg mb-2">Timber & Sheet</h4>
-                    <p class="text-slate-600 text-sm">Structural timber, sheet materials, treated wood, decking and fencing.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🧱</div>
-                    <h4 class="font-bold text-lg mb-2">Aggregates & Cement</h4>
-                    <p class="text-slate-600 text-sm">Sand, gravel, cement, concrete blocks, bricks and landscaping materials.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🏠</div>
-                    <h4 class="font-bold text-lg mb-2">Plaster & Drylining</h4>
-                    <p class="text-slate-600 text-sm">Plasterboard, plaster, insulation, coving and all finishing materials.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🔧</div>
-                    <h4 class="font-bold text-lg mb-2">Hardware & Tools</h4>
-                    <p class="text-slate-600 text-sm">Fixings, fasteners, hand tools, power tools and safety equipment.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🚿</div>
-                    <h4 class="font-bold text-lg mb-2">Plumbing Supplies</h4>
-                    <p class="text-slate-600 text-sm">Pipes, fittings, bathroom supplies and heating system components.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🌳</div>
-                    <h4 class="font-bold text-lg mb-2">Fencing & Landscaping</h4>
-                    <p class="text-slate-600 text-sm">Fence panels, posts, gates, sleepers and garden building supplies.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition accent-border">
-                    <div class="text-3xl mb-3">🔥</div>
-                    <h4 class="font-bold text-lg mb-2">Industrial Gas</h4>
-                    <p class="text-slate-600 text-sm">Welding gas, cutting gas and industrial gas supplies for trade use.</p>
-                </div>
-                <div class="bg-brand-500 text-white p-6 rounded-xl shadow-md hover:bg-brand-600 transition">
-                    <div class="text-3xl mb-3">🔵</div>
-                    <h4 class="font-bold text-lg mb-2">Calor Gas Stockist</h4>
-                    <p class="text-sm opacity-90">Authorised Calor Gas supplier. Propane, butane, patio gas — bottles and refills available.</p>
-                </div>
+    <section class="products">
+        <div class="container">
+            <div class="products-header">
+                <span class="subtext">Our Products</span>
+                <h2>What We Supply</h2>
+                <p>A comprehensive range of building materials and supplies for trade professionals and DIY enthusiasts alike.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-16">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-3xl font-bold mb-6">Why Nottingham Chooses Lomax</h3>
-                    <div class="space-y-4">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold shrink-0">1</div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Trade Prices For Everyone</h4>
-                                <p class="text-slate-600">Whether you're a contractor buying in bulk or a homeowner tackling a project, you get the same great trade prices.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold shrink-0">2</div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Expert Knowledge</h4>
-                                <p class="text-slate-600">Our experienced team can advise on materials, quantities and best practices. We've been doing this since 1890.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold shrink-0">3</div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Fast Local Delivery</h4>
-                                <p class="text-slate-600">Quick, reliable delivery across Nottingham and surrounding areas. Get your materials when you need them.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold shrink-0">4</div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Trusted by Professionals</h4>
-                                <p class="text-slate-600">Schools, local authorities and building companies rely on us for consistent quality and service.</p>
-                            </div>
-                        </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Timber">
+                    <div class="product-card-content">
+                        <h4>Timber & Sheet</h4>
+                        <p>Structural timber, sheet materials, treated wood, decking and fencing.</p>
                     </div>
                 </div>
-                <div class="bg-slate-100 rounded-2xl p-8 text-center">
-                    <div class="text-6xl font-extrabold text-brand-500 mb-2">130+</div>
-                    <p class="text-xl font-semibold text-slate-700 mb-4">Years Serving Nottingham</p>
-                    <p class="text-slate-600">
-                        Four generations of the Lomax family have supplied Nottingham's builders, tradespeople and DIY enthusiasts with quality materials at fair prices.
-                    </p>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=400&q=80" alt="Aggregates">
+                    <div class="product-card-content">
+                        <h4>Aggregates & Cement</h4>
+                        <p>Sand, gravel, cement, concrete blocks, bricks and landscaping materials.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80" alt="Plasterboard">
+                    <div class="product-card-content">
+                        <h4>Plaster & Drylining</h4>
+                        <p>Plasterboard, plaster, insulation, coving and all finishing materials.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1590479773265-7464e5d48118?w=400&q=80" alt="Tools">
+                    <div class="product-card-content">
+                        <h4>Hardware & Tools</h4>
+                        <p>Fixings, fasteners, hand tools, power tools and safety equipment.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=400&q=80" alt="Plumbing">
+                    <div class="product-card-content">
+                        <h4>Plumbing Supplies</h4>
+                        <p>Pipes, fittings, bathroom supplies and heating system components.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1558906141-77e2f53ad35a?w=400&q=80" alt="Fencing">
+                    <div class="product-card-content">
+                        <h4>Fencing & Landscaping</h4>
+                        <p>Fence panels, posts, gates, sleepers and garden building supplies.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Industrial gas">
+                    <div class="product-card-content">
+                        <h4>Industrial Gas</h4>
+                        <p>Welding gas, cutting gas and industrial gas supplies for trade use.</p>
+                    </div>
+                </div>
+                <div class="product-card featured">
+                    <img src="https://images.unsplash.com/photo-1567306295427-94503f8300d7?w=400&q=80" alt="Calor Gas">
+                    <div class="product-card-content">
+                        <h4>Calor Gas Stockist</h4>
+                        <p>Authorised supplier. Propane, butane, patio gas—bottles and refills available.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Calor Gas CTA -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-4">🔵 Authorised Calor Gas Stockist</h3>
-            <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-6">
-                Need gas for your BBQ, patio heater, caravan or workshop? We stock a full range of Calor propane and butane cylinders. New bottles and refills available.
-            </p>
-            <a href="tel:01159292350" class="inline-block bg-white text-blue-700 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition">
-                Call to Check Availability
-            </a>
+    <section class="cta">
+        <div class="container">
+            <div class="cta-inner">
+                <div class="cta-badge">
+                    <span>🔵</span>
+                    Authorised Calor Gas Stockist
+                </div>
+                <h2>Need Gas for Your BBQ, Caravan or Workshop?</h2>
+                <p>We stock a full range of Calor propane and butane cylinders. New bottles and refills available—call to check availability.</p>
+                <a href="tel:01159292350" class="btn">
+                    Call to Check Availability
+                    <span class="btn-arrow"></span>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Contact & Location -->
-    <section class="py-16 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-3xl font-bold mb-6">Visit Our Yard</h3>
-                    <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
-                        <address class="not-italic text-lg mb-4">
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-content">
+                    <h2>Visit Our Yard</h2>
+                    <div class="contact-card">
+                        <address>
                             <strong>Charles Lomax & Son Ltd</strong><br>
                             Whitemoor Lodge<br>
                             2 Nuthall Road, Bobbers Mill<br>
                             Nottingham<br>
-                            <span class="font-semibold">NG8 5AF</span>
+                            <strong>NG8 5AF</strong>
                         </address>
-                        <div class="space-y-2">
-                            <p>
-                                <strong>Phone:</strong> 
-                                <a href="tel:01159292350" class="text-brand-600 hover:underline">0115 929 2350</a>
-                            </p>
-                            <p>
-                                <strong>Fax:</strong> 0115 929 2329
-                            </p>
-                        </div>
+                        <p>
+                            <strong>Phone:</strong> 
+                            <a href="tel:01159292350" class="contact-link">0115 929 2350</a>
+                        </p>
+                        <p>
+                            <strong>Fax:</strong> 0115 929 2329
+                        </p>
                     </div>
-                    <a href="https://maps.google.com/?q=Whitemoor+Lodge+2+Nuthall+Road+Bobbers+Mill+Nottingham+NG8+5AF" target="_blank" class="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <a href="https://maps.google.com/?q=Whitemoor+Lodge+2+Nuthall+Road+Bobbers+Mill+Nottingham+NG8+5AF" target="_blank" class="btn btn-primary" style="background: var(--color-dark);">
                         Get Directions
+                        <span class="btn-arrow"></span>
                     </a>
                 </div>
-                <div>
+                <div class="contact-map">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2403.8!2d-1.19!3d52.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDU4JzEyLjAiTiAxwrAxMScyNC4wIlc!5e0!3m2!1sen!2suk!4v1600000000000!5m2!1sen!2suk" 
-                        class="w-full h-80 rounded-xl shadow-sm"
-                        style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
@@ -237,14 +995,45 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-slate-400 mb-2">
-                © 2024 Charles Lomax & Son Ltd. Serving Nottingham since 1890.
-            </p>
-            <p class="text-slate-500 text-sm">
-                Site by <a href="https://chrisrowe.net" class="hover:text-white transition">Chris Rowe</a>
-            </p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-heading">Supplying Nottingham's builders and tradespeople since 1890</div>
+                <a href="tel:01159292350" class="footer-cta-btn">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </a>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>Charles Lomax</span> & Son</div>
+                    <p>Driving Nottingham's building projects with quality materials and expert service for over 130 years.</p>
+                    <a href="tel:01159292350" class="btn btn-primary" style="padding: 12px 20px; font-size: 0.875rem;">
+                        Get a Quote
+                        <span class="btn-arrow"></span>
+                    </a>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <a href="tel:01159292350">0115 929 2350</a>
+                    <h5 style="margin-top: 24px;">Address</h5>
+                    <p>Whitemoor Lodge<br>2 Nuthall Road<br>Nottingham NG8 5AF</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Products</h5>
+                    <a href="#">Timber & Sheet</a>
+                    <a href="#">Aggregates</a>
+                    <a href="#">Plaster & Drylining</a>
+                    <a href="#">Hardware</a>
+                    <a href="#">Calor Gas</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Hours</h5>
+                    <p>Mon–Fri: 7:30am–5pm<br>Saturday: 8am–12pm<br>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Charles Lomax & Son Ltd. Serving Nottingham since 1890. Site by <a href="https://chrisrowe.net">Chris Rowe</a></p>
+            </div>
         </div>
     </footer>
 </body>
